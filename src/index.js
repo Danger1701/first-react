@@ -1,17 +1,28 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import React, { useEffect, useState } from "react";
+import ReactDOM from "react-dom/client";
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
-);
+const root = ReactDOM.createRoot(document.getElementById("root"));
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+
+
+function Input() {
+  const [msg, setMsg] = useState("");
+  const [num, setNum] = useState(0)
+
+  useEffect(()=> console.log("render"), [num])
+
+  return (<>
+    <input onChange={e=>(setMsg(e.target.value))} />
+    <button onClick={()=>{
+      alert("pelotudo dice :"+msg)}}>Save</button>
+      <hr/>
+      <h1>Counter: {num}</h1>
+      <button onClick={()=>setNum(num+1)}>
+        ADD
+      </button>
+  </>)
+}
+
+root.render(<>
+  <Input/>
+</>);
